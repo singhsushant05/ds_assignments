@@ -1,68 +1,33 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-
-struct Node {
-    int data;
-    Node* next;
-};
-Node* createCircularList() {
-    Node* head = nullptr;
-    Node* tail = nullptr;
+void bubble_sort(int arr[],int n )
+{
+    for (int i = n-1; i>=1 ; i--)
+    {
+       for (int j = 0; j < i; j++)
+       {
+        if (arr[j]>arr[j + 1])
+        {
+            int temp = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = temp;
+        }
+        
+       }
+       
+    }
     
+}
+int main(){
     int n;
-    cout << "Enter number of nodes: ";
-    cin >> n;
-    
-    if (n <= 0) return nullptr;
-    
-    for (int i = 0; i < n; i++) {
-        int value;
-        cout << "Enter value for node " << i + 1 << ": ";
-        cin >> value;
-        
-        Node* newNode = new Node{value, nullptr};
-        
-        if (!head) {
-            head = newNode;
-            tail = newNode;
-        } else {
-            tail->next = newNode;
-            tail = newNode;
-        }
-    }
-    if (tail) tail->next = head;
-    
-    return head;
-}
-void printCircularList(Node* head) {
-    if (!head) {
-        cout << "List is empty" << endl;
-        return;
-    }
+    cin>> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) cin >> arr[i];
 
-    Node* current = head;
-    do {
-        cout << current->data << " ";
-        current = current->next;
-    } while (current != head);
+    bubble_sort(arr,n);
+    for (int i = 0; i < n; i++) cout << arr[i] << " ";
     
-    cout << head->data << endl;
-}
-
-int main() {
+   
     
-    Node* head = createCircularList();
-    printCircularList(head);
-    
-    /*if (head) {
-        Node* current = head->next;
-        Node* temp;
-        while (current != head) {
-            temp = current;
-            current = current->next;
-            delete temp;
-        }
-        delete head;
-    }*/
     return 0;
 }

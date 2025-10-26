@@ -1,77 +1,143 @@
+#include<iostream>
+using namespace std;
+#include<string>
+#include<algorithm>
+
+// A
+/*string concatenate(string s1,string s2){
+    
+    return s1 + s2;
+   //return a + " " + b;
+}
+int main (){
+string s1,s2,s3;
+cout<< "enter first string: ";
+cin >> s1;
+cout<< "\nenter second string: ";
+cin >> s2;
+string result = concatenate(s1,s2);
+cout << result << endl;
+return 0;
+}
+*/
+
+
+// B
+
+/*string reverse_string(string s){
+    int n = s.length();
+    for (int i = 0; i < n/2; i++)
+    {
+        char temp = s[i];
+        s[i] = s[n - i - 1];
+        s[n - i - 1] = temp;
+
+    } 
+    return s;
+}
+int main(){
+    string s;
+    s = "SUSHANT";
+    string result = reverse_string(s);
+    cout << result;
+    return 0;
+}*/
+
+// C
+
+/*bool isVowel(char c){
+
+    char vowels[] = {'a','e','i','o','u','A','E','I','O','U'};
+    
+    for(char v: vowels){
+        if (c == v ) return true;
+        
+    }
+    return false; 
+}
+string removeVowels(string s){
+    string result = "";
+    for (int i = 0; i < s.length(); i++)
+    {
+       if (!isVowel(s[i]))
+       {
+        result += s[i];
+       }
+       
+    }
+    return result;
+}
+int main(){
+    string s = "Hello brother";
+    cout << removeVowels(s) << endl;
+    return 0;
+}*/
+
+// D
+
+/*int alphabetical_order(string s){
+    for (int i = 0; i < s.length(); i++)
+    {
+        cout << s[i] << ":" << int(s[i]) << endl;
+    }
+    return 0;
+}
+void sorting(string &s){
+    int n = s.length();
+    for (int i = n-1; i >= 1; i--){
+       for (int j = 0; j < i; j++){
+          if (int(s[j]>int(s[j+1]))){
+           
+            char temp = s[j];
+            s[j] = s[j+1];
+            s[j+1] = temp;
+       }
+       
+       } 
+    }
+       
+    }
+    int main(){
+        string s = "SUSHANT";
+        alphabetical_order(s);
+        sorting(s);
+        cout << "ordered string: " << s << endl;
+
+
+    }
+    */
+
+// E
+
 #include <iostream>
+#include <string>
 using namespace std;
 
-struct Node {
-    char data;
-    Node* prev;
-    Node* next;
-};
-Node* createDoublyList() {
-    int n;
-    cout << "Enter number of characters: ";
-    cin >> n;
-    
-    if (n <= 0) return nullptr;
-    
-    Node* head = nullptr;
-    Node* tail = nullptr;
-    
-    for (int i = 0; i < n; i++) {
-        char value;
-        cout << "Enter character for node " << i + 1 << ": ";
-        cin >> value;
-        
-        Node* newNode = new Node{value, nullptr, nullptr};
-        
-        if (!head) {
-            head = newNode;
-            tail = newNode;
-        } else {
-            tail->next = newNode;
-            newNode->prev = tail;
-            tail = newNode;
+string toLowercase(string s) {
+    for (int i = 0; i < s.length(); i++) {
+        if (s[i] >= 'A' && s[i] <= 'Z') {
+            s[i] = s[i] + 32;
         }
     }
-    
-    return head;
+    return s;
 }
 
-
-bool isPalindrome(Node* head) {
-    if (!head) return true; 
-    
-    Node* tail = head;
-    while (tail->next) {
-        tail = tail->next;
+string toUppercase(string s) {
+    for (int i = 0; i < s.length(); i++) {
+        if (s[i] >= 'a' && s[i] <= 'z') {
+            s[i] = s[i] - 32;
+        }
     }
-    
-    Node* front = head;
-    while (front != tail && front->prev != tail) {
-        if (front->data != tail->data) return false;
-        front = front->next;
-        tail = tail->prev;
-    }
-    
-    return true;
+    return s;
 }
 
 int main() {
-    cout << "Creating Doubly Linked List of characters...\n";
-    Node* head = createDoublyList();
-    
-    // Check if palindrome
-    if (isPalindrome(head)) {
-        cout << "The list is a palindrome\n";
-    } else {
-        cout << "The list is not a palindrome\n";
-    }
-    
-    /*Node* current = head;
-    while (current) {
-        Node* temp = current;
-        current = current->next;
-        delete temp;
-    }*/
-    
+    string s = "Sushant";
+
+    cout << "Lowercase: " << toLowercase(s) << endl;
+    cout << "Uppercase: " << toUppercase(s) << endl;
+
     return 0;
 }
+
+    
